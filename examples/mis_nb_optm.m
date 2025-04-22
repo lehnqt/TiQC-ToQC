@@ -1,7 +1,9 @@
 %compare
+tic
 addpath('../TiQC/mpo_invariant/')
 addpath('../ToQC/mps/')
 diary mis_nb_optm
+rng('shuffle')
 nw=4;
 maxNumCompThreads(nw);
 %parpool('local',nw)
@@ -130,7 +132,7 @@ Aeq=[];
 beq=[];
 lb=[];
 ub=[];
-options = optimoptions('fmincon','SpecifyObjectiveGradient',true,'HessianApproximation','lbfgs','Display','iter');
+options = optimoptions('fminunc','SpecifyObjectiveGradient',true,'HessianApproximation','lbfgs','Display','iter');
 options.MaxFunctionEvaluations = 50;
 options.ObjectiveLimit=iF_target;
 nonlcon=[];
@@ -141,7 +143,8 @@ parfor jtry=1:Ntry
 c0=rand()*(rand(bin_num,ctrl_num)-1/2);
 x0=[c0(:);T0*rand()];
 iF0=fun(x0)
-x_optm=fmincon(fun,x0,A,b,Aeq,beq,lb,ub,nonlcon,options);
+% x_optm=fmincon(fun,x0,A,b,Aeq,beq,lb,ub,nonlcon,options);
+x_optm=fminunc(fun,x0,options);
 xL{jtry}=x_optm;
 iFL(jtry)=fun(x_optm);
 end
@@ -150,10 +153,12 @@ x_optm=xL{jmin};
 options.MaxFunctionEvaluations = 500;
 options.ObjectiveLimit=iF_target;
 %refinement
-x_optm=fmincon(fun,x_optm,A,b,Aeq,beq,lb,ub,nonlcon,options);
+% x_optm=fmincon(fun,x_optm,A,b,Aeq,beq,lb,ub,nonlcon,options);
+x_optm=fminunc(fun,x_optm,options);
 iF_optm=fun(x_optm);
 fprintf('operator infidelity %d\n',iF_optm);
 %state infidelity check
 iF_state=mps_infid_nograd(H2q,Hc,x_optm,mps0,mpstg_exact,tebd_options_mps);
 fprintf('state infidelity %d\n',iF_state);
 save mis_nb_optm_dat
+toc
