@@ -302,5 +302,4 @@ x = [c(:); T];
 
 ## License / citation
 
-See the repository root for license information.  
 If you use TiQC‑ToQC in academic work, please cite the repository and associated publications (if applicable).
