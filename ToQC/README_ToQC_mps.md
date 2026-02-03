@@ -1,6 +1,6 @@
 # ToQC / mps (MATLAB)
 
-This folder contains the **Matrix Product State (MPS)** backend of **TiQC‑ToQC** for simulating and optimizing 1D quantum dynamics.  
+The ToQC/mps folder contains the **Matrix Product State (MPS)** backend of **TiQC‑ToQC** for simulating and optimizing 1D quantum dynamics.  
 It supports **TEBD-style time evolution**, MPS **compression/truncation**, and **infidelity + gradient** evaluation for (optimal) control, including **robust / ensemble** variants.
 
 > **MPS representation:** an MPS is a `1×N` cell array where each site tensor is typically `Dl × d × Dr`.
