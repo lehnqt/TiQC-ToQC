@@ -33,7 +33,7 @@ for j=2:2:n-1
     [mps0{j},mps0{j+1}]=mps_gate_2q(mps0{j},mps0{j+1},g20{j},sv_min,D);
 end
 if iscpr==1
-      mps0=mps_recompress(mps0,sv_min,Dc,nsweep);
+      mps0=mps_compress(mps0,sv_min,Dc,nsweep);
 end
 mps0=mps_normalize(mps0);
 end
@@ -77,7 +77,7 @@ end
 end
 if mod(k-1,midstep)==0||k==nbin
     if iscpr==1
-mps=mps_recompress(mps,sv_min,Dc,nsweep);
+mps=mps_compress(mps,sv_min,Dc,nsweep);
     end
 mps=mps_normalize(mps);
 jD=jD+1;
@@ -106,7 +106,7 @@ for j=2:2:n-1
     [mps{j},mps{j+1}]=mps_gate_2q(mps{j},mps{j+1},g20{j},sv_min,D);
 end
 if iscpr==1
-      mps=mps_recompress(mps,sv_min,Dc,nsweep);
+      mps=mps_compress(mps,sv_min,Dc,nsweep);
 end
 mps=mps_normalize(mps);
 end
