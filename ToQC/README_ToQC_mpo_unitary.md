@@ -1,6 +1,6 @@
 # ToQC / mpo_unitary (MATLAB)
 
-This folder contains a **Matrix Product Operator (MPO)** backend for **time propagation and optimal control of unitary evolution operators** (as MPOs), instead of propagating quantum states (MPS).
+The ToQC/mpo_unitary folder contains a **Matrix Product Operator (MPO)** backend for **time propagation and optimal control of unitary evolution operators** (as MPOs), instead of propagating quantum states (MPS).
 
 It provides:
 - **TEBD-style propagation of an MPO** under nearest-neighbor dynamics and local controls
